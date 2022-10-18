@@ -1,23 +1,27 @@
 Rails.application.routes.draw do
-  get 'delivery_addresses/index'
-  get 'delivery_addresses/edit'
-  get 'orders/new'
-  get 'orders/complete'
-  get 'orders/index'
-  get 'orders/show'
-  get 'cart_products/index'
-  get 'customers/show'
-  get 'customers/edit'
-  get 'customers/comfirm'
-  get 'sessions/new'
-  get 'sessions/create'
-  get 'sessions/destroy'
-  get 'registrations/new'
-  get 'registrations/create'
-  get 'products/index'
-  get 'products/show'
-  get 'homes/top'
-  get 'homes/about'
-  devise_for :admins
-  devise_for :customers
+  scope module: :public do
+  root :to =>"homes#top"
+  get "homes/about"=>"homes#about"
+  resources :delivery_addresses, only:[:index,:edit]
+  resources :orders, only:[:new,:complete,:index,:show]
+  resources :cart_products, only:[:index]
+  resources :customers, only:[:show,:edit,:comfirm]
+  resources :products, only:[:index,:show]
+  end
+
+  namespace :admin do
+  resources :products, only:[:index,:show,:edit]
+  resources :customers, only:[:index,:show,:edit]
+  resources :orders, only:[:show]
+  end
+
+
+  devise_for :customers,skip: [:passwords], controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
+}
+
+  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+  sessions: "admin/sessions"
+}
 end
