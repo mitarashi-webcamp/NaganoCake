@@ -16,23 +16,30 @@
   </div>
 
   <div class="row">
-    <%= form_with model: @customer, url: session_path do |f| %>
-     <div class="col-12 offset-1">
+    <%= form_with model: @customer, url: new_customer_session_path, class: "col-6" do |f| %>
+     <div class="col-12 offset-4">
        <table class="table table-borderless">
          <tr>
            <td>メールアドレス</td>
-           <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+           <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-100" %></td>
          </tr>
          <tr>
            <td>パスワード</td>
-           <td><%= f.password_field :password, autocomplete: "current-password" %></td>
+           <td><%= f.password_field :password, autocomplete: "current-password", class: "w-100" %></td>
          </tr>
          <tr>
            <td></td>
-           <td><%= f.submit "ログイン" %></td>
+           <td><%= f.submit "ログイン", class: "btn btn-primary w-50" %></td>
          </tr>
        </table>
      </div>
     <% end %>
+  </div>
+  <div class="row my-5">
+    <iv class="col-5 offset-1 d-inline-flex">
+      <div class="bg-light mx-4 px-3">
+        <h5 class="m-0">会員登録がお済みでない方</h5>
+      </div>
+    </iv>
   </div>
 </div>
