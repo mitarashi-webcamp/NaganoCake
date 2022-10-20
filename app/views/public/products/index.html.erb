@@ -1,0 +1,12 @@
+<h1>商品一覧(全何件)</h1>
+<tbody>
+<% @products.each do |product| %>
+<tr>
+<td>
+</td>
+<td><%= link_to product.name, product_path(product.id) %></td>
+<td><%= product.price %></td>
+</tr>
+<% end %>
+
+</tbody>
