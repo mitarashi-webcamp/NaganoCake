@@ -13,10 +13,10 @@ Rails.application.routes.draw do
   scope module: :public do
   root :to =>"homes#top"
   get "homes/about"=>"homes#about"
-  resources :delivery_addresses, only:[:index,:edit]
-  resources :orders, only:[:new,:complete,:index,:show]
-  resources :cart_products, only:[:index]
-  resources :customers, only:[:show,:edit,:comfirm]
+  resources :delivery_addresses, only:[:index,:edit,:create,:update,:destroy]
+  resources :orders, only:[:new,:comfirm,:complete,:create,:index,:show]
+  resources :cart_products, only:[:index,:create,:update,:destroy,:all_destroy]
+  resource :customers, only:[:show,:edit,:update,:comfirm,:withdraw]
   resources :products, only:[:index,:show]
   end
 
