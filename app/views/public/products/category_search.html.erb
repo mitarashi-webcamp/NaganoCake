@@ -1,0 +1,11 @@
+<tbody>
+    <% categories.each do |category| %>
+    <tr>
+      <% if category.is_active == true %>　
+      <td>
+        <%= link_to category.name, products_path(category_id: category.id), class: "text-secondary" %>
+      </td>                   
+      <% end %>
+    </tr>
+    <% end %>
+</tbody>
