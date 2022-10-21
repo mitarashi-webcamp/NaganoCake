@@ -1,5 +1,5 @@
 class Public::CartProductsController < ApplicationController
-  before_action :authenticate_member!
+  before_action :authenticate_customer!
   def index
     @cart_products = current_customer.cart_products.all
   end
@@ -24,6 +24,6 @@ class Public::CartProductsController < ApplicationController
 
   private
     def cart_product_params
-        params.require(:cart_product).oermit(:product_id, :price, :quantity)
+        params.require(:cart_product).permit(:product_id, :price, :quantity)
     end
 end
