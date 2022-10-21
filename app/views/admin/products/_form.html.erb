@@ -20,11 +20,11 @@
 </div>
 
 <div class="form-group">販売ステータス
-  <%= form_with model: product do |form| %>
+  <%= form_with model: product do |form| %> 
     <%= form.radio_button :is_active, true %>
-    <%= form.label :is_active_true "販売中" %>
+    <%= form.label :is_active,"販売中", value: true %>
     <%= form.radio_button :is_active, false %>
-    <%= form.label :is_active_false "販売停止中" %>
+    <%= form.label :is_active,"販売停止中", value: false %>  <%#= 初期値設定できてる？後ほど確認　%>
   <% end %>
 </div>
 

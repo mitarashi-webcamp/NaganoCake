@@ -1,1 +1,30 @@
-<h1>product_SHOW</h1>
+<div class="container">
+  <div class="row">
+    <h1>商品詳細</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <%#= image %>
+    </div>
+    
+    <div class="col-md-8">
+      <table>
+        <tr>
+          <td>商品名 <%= @product.name %></td>
+          <td>商品説明 <%= @product.note %></td>
+          <td>ジャンル <%= @product.genre_id %></td>
+          <td>
+            税込価格<br>
+            (税抜価格)
+            <%= @product.add_tax_price.to_s(:dalimited) %>
+            (
+            <%= @product.price %>
+            )円
+          </td>
+          <td>販売ステータス <%= @product.is_active %></td>
+          <td><%= link_to edit_admin_product_path, "編集する", class: "btn btn-success" %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
