@@ -42,4 +42,14 @@
       </div>
     </iv>
   </div>
+
+  <div class="row">
+    <%= form_with model: @customer, url: new_customer_session_path, class: "col-6" do |f| %>
+      <div class="col-12 offset-6">
+        <%= link_to "こちら", new_customer_registration_path %>
+        から新規登録を行ってください。
+      </div>
+    <% end %>
+  </div>
+
 </div>
