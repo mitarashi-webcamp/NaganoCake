@@ -1,43 +1,56 @@
 <header>
   <nav class="navbar navbar-expand-lg">
-     <div class="container">
+    <div class="container">
     <a class="navbar-brand" href="/"><span>NaganoCake</span></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-     
-        <ul class="navbar-nav ml-auto">
+    <nav>
+		<ul class="nav">
         <% if customer_signed_in? %>
-            <li>
-            <%= link_to "マイページ",customer_path(current_customer) %>
-           </li>
           <li>
-            <%= link_to "商品一覧",products_path %>
+          <%= link_to customers_path,class: "btn btn-outline-secondary mr-3vw" do %>
+          マイページ
+          <% end %>
           </li>
           <li>
-            <%= link_to "カート",cart_products_path %>
+          <%= link_to products_path,class: "btn btn-outline-secondary mr-3vw" do %>
+          商品一覧
+          <% end %>
           </li>
           <li>
-            <%= link_to "ログアウト",destroy_customer_session_path, method: :delete  %>
-
+          <%= link_to cart_products_path,class: "btn btn-outline-secondary mr-3vw" do %>
+          カート
+          <% end %>
+          </li>
+          <li>
+          <%= link_to destroy_customer_session_path, method: :delete,class: "btn btn-outline-secondary mr-3vw" do  %>
+          ログアウト
+          <% end %>
           </li>
 
           <% else %>
 
           <li>
-            <%= link_to "About",homes_about_path %>
+          <%= link_to homes_about_path,class: "btn btn-outline-secondary mr-3vw" do %>
+          About
+          <% end %>
           </li>
           <li>
-            <%= link_to "商品一覧",products_path  %>
+          <%= link_to products_path,class: "btn btn-outline-secondary mr-3vw" do  %>
+          商品一覧
+          <% end %>
           </li>
           <li>
-            <%= link_to "新規登録",new_customer_registration_path  %>
+          <%= link_to new_customer_registration_path,class: "btn btn-outline-secondary mr-3vw" do  %>
+          新規登録
+          <% end %>
           </li>
           <li>
-            <%= link_to "ログイン",new_customer_session_path %>
+          <%= link_to new_customer_session_path,class: "btn btn-outline-secondary mr-3vw" do %>
+          ログイン
+          <% end %>
           </li>
           <% end %>
          </ul>
+        </nav>
         </div>
         </div>
 </header>

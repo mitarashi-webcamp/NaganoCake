@@ -1,4 +1,9 @@
-<h1>商品一覧(全何件)</h1>
+<h1>商品一覧</h1>
+
+<div class="container">
+    <div class="row">
+<div class="col-md-9">
+<div class="row">            
 <tbody>
 <% @products.each do |product| %>
 <tr>
@@ -8,5 +13,7 @@
 <td><%= product.price %></td>
 </tr>
 <% end %>
-
 </tbody>
+</div>
+</div>
+</div>
