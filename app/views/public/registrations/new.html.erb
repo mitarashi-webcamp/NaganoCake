@@ -8,7 +8,7 @@
   </div>
 
   <div class="row">
-    <%= form_with model: @customer, url: customer_registration_path do |f| %>
+    <%= form_with model: @customer, url: customer_registration_path, id: "new_customer", class: "new_customer" do |f| %>
       <%= render "public/shared/error_messages", resource: resource %>
 
       <div class='col-12 offset-1'>
