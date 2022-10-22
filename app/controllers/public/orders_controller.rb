@@ -5,6 +5,9 @@ class Public::OrdersController < ApplicationController
   def complete
   end
 
+  def comfirm
+  end
+
   def index
   end
 
