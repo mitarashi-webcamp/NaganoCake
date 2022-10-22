@@ -1,4 +1,4 @@
-<%= form_with model: product do |f| %>
+<%= form_with model: product, url: admin_products_path, method: :post do |f| %>
 <div class="form-group">商品画像
   <%= f.file_field :image, accept: "image/*" %>
 </div>
@@ -20,12 +20,12 @@
 </div>
 
 <div class="form-group">販売ステータス
-  <%= form_with model: product do |form| %> 
-    <%= form.radio_button :is_active, true %>
-    <%= form.label :is_active,"販売中", value: true %>
-    <%= form.radio_button :is_active, false %>
-    <%= form.label :is_active,"販売停止中", value: false %>  <%#= 初期値設定できてる？後ほど確認　%>
-  <% end %>
+
+    <%= f.radio_button :is_active, true %>
+    <%= f.label :is_active,"販売中", value: true %>
+    <%= f.radio_button :is_active, false %>
+    <%= f.label :is_active,"販売停止中", value: false %>  <%#= 初期値設定できてる？後ほど確認　%>
+
 </div>
 
 <div class="form-group">

@@ -14,7 +14,7 @@
     <tbody>
       <% @order_products.each do |order_product| %>
       <td><%= order_product.created_at %></td>
-      <td><%= "order_product.user.last_name + first_name" %></td>
+      <td><%= "order_product.user.last_name" %> <%= "order_product.user.first_name" %></td>
       <td><%= order_product.count %></td>
       <td><%= order.status %></td>
       <% end %>

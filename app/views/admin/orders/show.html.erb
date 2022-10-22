@@ -1,1 +1,36 @@
-<h1>admin/order_SHOW</h1>
+<div class="container">
+ <div class="row">
+  <div class="col-sm-12 col-md-11 col-lg-8 px-5 px-sm-0 mx-auto">
+   <br>
+
+   <h3>注文履歴詳細</h3>
+   <table class="table table-borderless">
+    <tbody>
+      <tr>
+        <td>購入者</td>
+        <td><%= @customer.last_name + @customer.first_name %></td>
+      </tr>
+      <tr>
+        <td>注文日</td>
+        <td><%= @customer.created_at %></td> <%# 訂正予定　%>
+      </tr>
+      <tr>
+        <td>配送先</td>
+        <td><%= "delivery_address.zip_code" %> <%= "delivery_address.address" %><br><%# 会員とアソシエーション？ %>
+            <%= "delivery_address.name" %>
+        </td>
+      </tr>
+      <tr>
+        <td>支払方法</td>
+        <td><%= "order.total_payment" %></td>
+      </tr>
+      <tr>注文ステータス</tr>
+
+      </tr>
+    </tbody>
+   </table>
+   </div>
+  </div>
+ </div>
+
+
