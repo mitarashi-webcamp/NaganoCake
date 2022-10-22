@@ -2,10 +2,10 @@
  <div class="row">
  <div class="col-lg-8">
   <br>
-<h3><%= "@customer.last_name + @customer.first_name" %>さんの会員情報編集</h3>
+<h3><%= @customer.last_name %> <%=@customer.first_name %>さんの会員情報編集</h3>
 
 <table class="table table-borderless">
-  <%= form_with model:@customer do |f| %>
+  <%= form_with model:@customer, url:admin_customer(customer) do |f| %>
     <tbody>
       <tr>
         <td>会員id</td>
