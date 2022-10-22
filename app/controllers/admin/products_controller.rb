@@ -4,25 +4,25 @@ class Admin::ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new
-    @product.save
+    @product = Product.new(product_params)
+    @product.save!
     redirect_to admin_product_path(@product)
   end
 
   def index
     @products = Product.all
   end
-  
+
   def show
     @product = Product.find(params[:id])
   end
-  
+
   def edit
   end
-  
+
   def update
   end
-  
+
 
   private
 

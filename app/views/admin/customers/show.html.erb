@@ -2,7 +2,7 @@
  <div class="row">
  <div class="col-lg-8">
   <br>
-   <h3><%= "@customer.last_name + @customer.first_name" %>会員詳細</h3>
+   <h3><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h3>
    <table class="table table-borderless">
     <tbody>
       <tr>
@@ -11,23 +11,23 @@
       </tr>
       <tr>
         <td>氏名</td>
-        <td><%= "@customer.last_name + @customer.first_name" %></td>
+        <td><%= @customer.last_name %> <%= @customer.first_name %></td>
       </tr>
       <tr>
 　　　　<td>フリガナ</td>
-　　　　<td><%= "@customer.last_name_kana + @customer.first_name_kana" %></td>
+　　　　<td><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></td>
       </tr>
       <tr>
         <td>郵便番号</td>
-        <td><%= "@customer.zip_code" %></td>
+        <td><%= @customer.zip_code %></td>
       </tr>
       <tr>
         <td>住所</td>
-        <td><%= "@customer.address" %></td>
+        <td><%= @customer.address %></td>
       </tr>
       <tr>
         <td>電話番号</td>
-        <td><%= "@customer.phone_number" %></td>
+        <td><%= @customer.phone_number %></td>
       </tr>
       <tr>
         <td>メールアドレス</td>
