@@ -12,6 +12,19 @@ class Public::DeliveryAddressesController < ApplicationController
   end
 
   def edit
+    @delivery_address = DeliveryAddress.find(params[:id])
+  end
+
+  def update
+    delivery_address = DeliveryAddress.find(params[:id])
+    delivery_address.update(delivery_address_params)
+    redirect_to delivery_addresses_path
+  end
+
+  def destroy
+    delivery_address = DeliveryAddress.find(params[:id])
+    delivery_address.destroy
+    redirect_to delivery_addresses_path
   end
 
 
