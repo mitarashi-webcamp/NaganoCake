@@ -1,6 +1,6 @@
 class Public::CustomersController < ApplicationController
 
-  before_action :autheniticate_customer, {only: [:show, :edit, :update]}
+  before_action :authenticate_customer!, {only: [:show, :edit, :update]}
 
   def show
   end
