@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
 
-  def autheniticate_customer
+  def authenticate_customer
     if current_customer.id == nil
       redirect_to(new_customer_session_path)
     end
