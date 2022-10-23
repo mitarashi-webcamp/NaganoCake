@@ -1,11 +1,11 @@
 class Public::ProductsController < ApplicationController
-  before_action :authenticate_member!, only: [:show]
+  before_action :authenticate_customer!, only: [:show]
   def index
     @products = Product.all
   end
 
   def show
-    @product=Product.find(params[:id])
+    @product = Product.find(params[:id])
     @cart_product = CartProduct
   end
 
