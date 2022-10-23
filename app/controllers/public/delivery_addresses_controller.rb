@@ -21,6 +21,12 @@ class Public::DeliveryAddressesController < ApplicationController
     redirect_to delivery_addresses_path
   end
 
+  def destroy
+    delivery_address = DeliveryAddress.find(params[:id])
+    delivery_address.destroy
+    redirect_to delivery_addresses_path
+  end
+
 
   private
 
