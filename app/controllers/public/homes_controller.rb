@@ -1,4 +1,7 @@
 class Public::HomesController < ApplicationController
+
+  skip_before_action :authenticate_customer!
+
   def top
   end
 
