@@ -62,7 +62,7 @@
               <td class="align-middle"><%= delivery_address.name %></td>
               <td class="align-middle">
                 <%= link_to "編集する", edit_delivery_address_path(delivery_address), class: "btn btn-success mx-1" %>
-                <%= link_to "削除する", delivery_address_path(delivery_address), class: "btn btn-danger mx-1" %>
+                <%= link_to "削除する", delivery_address_path(delivery_address), method: :delete, class: "btn btn-danger mx-1" %>
               </td>
             </tr>
           <% end %>
