@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row my-5">
+    <div class="col-4 offset-1 d-inline-flex">
+      <div class="bg-light px-3">
+        <h4 class="m-0">配送先編集</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <%= form_with model: @delivery_address, url: delivery_address_path(params[:id]), class: "col-10" do |f| %>
+      <div class="col-12">
+        <table class="table table-borderless">
+          <tr>
+            <td class="py-1" style="width: 200px">郵便番号(ハイフンなし)</td>
+            <td class="py-1"><%= f.text_field :zip_code, autofocus: true, autocomplete: "zip_code", class: "w-50" %></td>
+            <td class="py-1"></td>
+          </tr>
+          <tr>
+            <td class="py-1" style="width: 200px">住所</td>
+            <td class="py-1"><%= f.text_field :address, autocomplete: "address", class: "w-100" %></td>
+            <td class="py-1"></td>
+          </tr>
+          <tr>
+            <td class="py-1" style="width: 200px">宛名</td>
+            <td class="py-1"><%= f.text_field :name, autocomplete: "current-password", class: "w-50" %></td>
+            <td class="py-1" style="width: 150px"><%= f.submit "変更内容を保存", class: "btn btn-success w-100" %></td>
+          </tr>
+        </table>
+      </div>
+    <% end %>
+  </div>
+</div>
