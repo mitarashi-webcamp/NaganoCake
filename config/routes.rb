@@ -11,35 +11,27 @@ Rails.application.routes.draw do
 
 
   scope module: :public do
-  root :to =>"homes#top"
-  get "homes/about"=>"homes#about"
-  get "orders/complete" => "orders#complete"
-  post "orders/comfirm" => "orders#comfirm"
-  delete "carts/all_destroy" => "carts#all_destroy"
-  get "customers/comfirm" => "customers#comfirm"
-  patch "customers/withdraw" => "customers#withdraw"
+    root :to =>"homes#top"
+    get "homes/about"=>"homes#about"
+    get "orders/complete" => "orders#complete"
+    post "orders/comfirm" => "orders#comfirm"
+    delete "carts/all_destroy" => "carts#all_destroy"
+    get "customers/confirm" => "customers#confirm"
+    patch "customers/withdraw" => "customers#withdraw"
 
-
-
-  resources :delivery_addresses, only:[:index,:edit,:create,:update,:destroy]
-  resources :orders, only:[:new,:comfirm,:complete,:create,:index,:show]
-  resources :carts, only:[:index,:create,:update,:destroy,:all_destroy]
-  resource :customers, only:[:show,:edit,:update,:comfirm,:withdraw]
-  resources :products, only:[:index,:show]
+    resources :delivery_addresses, only:[:index,:edit,:create,:update,:destroy]
+    resources :orders, only:[:new,:comfirm,:complete,:create,:index,:show]
+    resources :carts, only:[:index,:create,:update,:destroy,:all_destroy]
+    resource :customers, only:[:show,:edit,:update,:comfirm,:withdraw]
+    resources :products, only:[:index,:show]
   end
 
   namespace :admin do
-
-  root :to =>"homes#top"
-  resources :products, only:[:index,:new,:create,:show,:edit,:update]
-  resources :customers, only:[:index,:show,:edit,:update]
-  resources :orders, only:[:show,:update]
-  resources :genres, only:[:index,:create,:edit,:update]
-  resources :order_products, only:[:update]
-
-
+    root :to =>"homes#top"
+    resources :products, only:[:index,:new,:create,:show,:edit,:update]
+    resources :customers, only:[:index,:show,:edit,:update]
+    resources :orders, only:[:show,:update]
+    resources :genres, only:[:index,:create,:edit,:update]
+    resources :order_products, only:[:update]
   end
-
-
-
 end
