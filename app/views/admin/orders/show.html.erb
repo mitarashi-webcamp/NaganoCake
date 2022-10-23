@@ -1,6 +1,6 @@
 <div class="container">
  <div class="row">
-  <div class="col-sm-12 col-md-11 col-lg-8 px-5 px-sm-0 mx-auto">
+  <div class="col-lg-8">
    <br>
 
    <h3>注文履歴詳細</h3>
@@ -8,7 +8,7 @@
     <tbody>
       <tr>
         <td>購入者</td>
-        <td><%= @customer.last_name + @customer.first_name %></td>
+        <td><%= @customer.last_name %><%= @customer.first_name %></td>
       </tr>
       <tr>
         <td>注文日</td>
@@ -24,13 +24,60 @@
         <td>支払方法</td>
         <td><%= "order.total_payment" %></td>
       </tr>
-      <tr>注文ステータス</tr>
+      <tr>
+        <td>注文ステータス</td>
+        <td>
 
+        </td>
+        <td><%= link_to "更新", admin_order_path(@customer), class: "btn btn-success" %></td>
       </tr>
     </tbody>
    </table>
+   <table class='table table-hover table-inverse'>
+     <thead>
+       <tr>
+         <th>商品名</th>
+         <th>単価（税込）</th>
+         <th>数量</th>
+         <th>小計</th>
+         <th>製作ステータス</th>
+       </tr>
+     </thead>
+     <tbody>
+       <% @order_products.each do |order_product| %>
+       <tr>
+       <td><%= order_product.name %></td>
+       <td></td>
+       <td><%= order_product.count %></td>
+       <td></td>
+       <td><%# order.product.select :count, [['製作不可',0], ['製作待ち',1], ['製作中',2], ['製作完了',4] %></td>
+       <td><%= link_to "更新", admin_order_path(@customer), class: "btn btn-success" %></td>
+       </tr>
+       <% end %>
+     </tbody>
+   </table>
    </div>
-  </div>
+
+
+<div class="col-lg-4 mt-5">
+  <table class="table table-borderless">
+    <tbody>
+      <tr>
+        <%# @orders.each do |order| %>
+        <td>商品合計</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>送料</td>
+        <td><%# order.postage %></td>
+      </tr>
+      <tr>
+        <td>請求金額合計</td>
+        <td></td>
+        <%# end %>
+      </tr>
+    </tbody>
+  </table>
+</div>
  </div>
-
-
+ </div>
