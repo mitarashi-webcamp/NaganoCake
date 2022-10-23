@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-  before_action :authenticate_customer!
+  #before_action :authenticate_customer!
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -12,10 +12,10 @@ class ApplicationController < ActionController::Base
   end
 
 
-  def authenticate_customer
-    if current_customer.id == nil
-      redirect_to(new_customer_session_path)
-    end
-  end
+  #def authenticate_customer
+  #   if current_customer.id == nil
+  #     redirect_to(new_customer_session_path)
+  #   end
+  # end
 
 end
