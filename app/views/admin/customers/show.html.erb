@@ -6,7 +6,7 @@
    <table class="table table-borderless">
     <tbody>
       <tr>
-        <td>会員id</td>
+        <td>会員ID</td>
         <td><%= @customer.id %></td>
       </tr>
       <tr>
@@ -35,7 +35,13 @@
       </tr>
       <tr>
         <td>会員ステータス</td>
-        <td><%= @customer.is_deleted %></td>
+        <td>
+          <% if @customer.is_deleted %>
+           <p class="text-muted font-weight-bold">退会</p>
+          <% else %>
+          <P class="text-success font-weight-bold">有効</P>
+          <% end %>
+          </td>
       </tr>
     </tbody>
     </table>
