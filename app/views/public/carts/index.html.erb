@@ -1,52 +1,52 @@
 <div class="container">
   <div class="row my-5">
-		<div class="col-md-5">
-			<h4>ショッピングカート</h4>
-		</div>
-		<div class="col-md-5"></div>
-		<div class="col-md-2">
-		<%= link_to "カートを空にする", carts_path(@cart_products), method: :delete,class: "btn btn-danger btn-sm" %>
-		</div>
+	<div class="col-md-5">
+	<h4>ショッピングカート</h4>
 	</div>
-       <table class="table table-bordered ">
-		<thead>
-			<tr><th>商品名</th>
-			<th>単価（税込）</th>
-			<th>数量</th>
-			<th>小計</th>
-		</tr></thead>
+	<div class="col-md-5"></div>
+	<div class="col-md-2">
+	<%= link_to "カートを空にする", carts_all_destroy_path, method: :delete,class: "btn btn-danger btn-sm" %>
+	</div>
+  </div>
+    <table class="table table-bordered ">
+	<thead>
+	<tr>
+	<th>商品名</th>
+	<th>単価（税込）</th>
+	<th>数量</th>
+	<th>小計</th>
+	</tr>
+	</thead>
 
-
-
-
-		 <% total = 0 %>
-
-     <% if current_customer.carts.present? %>
+    <% total = 0 %>
+    <% if current_customer.carts.present? %>
        <% @carts.each do |cart| %>
-       <tr>
-       <td>
+    <tr>
+    <td>
         <%= image_tag cart.product.get_image, size: "60x50" %>
 		<%= cart.product.name %>
-       </td>
-       <td><%= (cart.product.price * 1.1).floor %></td>
-       <td>
-        <%= form_with model: cart, url: cart_path(cart), local: true, method: :patch do |f| %>
-         <%= f.number_field :product_count, min: 1, max:10, id: "product_count"%>
-         <%= f.submit "変更",class: "btn btn-success" %>
-        <% end %>
-       </td>
-       <td>
-         <% subtotal = ((cart.product.price*cart.product_count)*1.1).to_i %>
-         <%= subtotal %>
-       </td>
-       <td>
-		<th><%= link_to "削除する", carts_path(@carts), method: :delete,class: "btn btn-danger" %></th>
-		</td>
-     </tr>
-       <% total += subtotal %>
-     <% end %>
-<% end %>
+    </td>
+    <td><%= (cart.product.price * 1.1).floor %></td>
+    <td>
+
+      <%= form_with model: cart, url: cart_path(cart), local: true, method: :patch do |f| %>
+        <%= f.number_field :product_count, min: 1, max:10, id: "product_count"%>
+        <%= f.submit "変更",class: "btn btn-success" %>
+      <% end %>
+    </td>
+    <td>
+       <% subtotal = ((cart.product.price*cart.product_count)*1.1).to_i %>
+       <%= subtotal %>
+    </td>
+    <td>
+	<th><%= link_to "削除する", cart_path(cart), method: :delete,class: "btn btn-danger" %></th>
+	</td>
+    </tr>
+      <% total += subtotal %>
+      <% end %>
+    <% end %>
 	</table>
+</div>
 
 
 
