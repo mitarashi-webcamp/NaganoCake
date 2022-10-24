@@ -1,5 +1,6 @@
 class Order < ApplicationRecord
   has_many :order_products
+  belongs_to :customer
   enum total_payment: { credit_card: 0, transfer: 1 }
 
   def address_display
