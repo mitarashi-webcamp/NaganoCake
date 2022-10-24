@@ -3,6 +3,9 @@ class Order < ApplicationRecord
   belongs_to :customer
   enum total_payment: { credit_card: 0, transfer: 1 }
 
+  def address_display
+    '〒' + zip_code + ' ' + address + ' ' + name
+  end
 
   # def taxin_price
   #   price*1.1
