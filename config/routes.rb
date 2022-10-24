@@ -14,14 +14,14 @@ Rails.application.routes.draw do
     root :to =>"homes#top"
     get "homes/about"=>"homes#about"
     get "orders/complete" => "orders#complete"
-    post "orders/comfirm" => "orders#comfirm"
+    post "orders/confirm" => "orders#confirm"
     delete "carts/all_destroy" => "carts#all_destroy"
     get "customers/confirm" => "customers#confirm"
     patch "customers/withdraw" => "customers#withdraw"
 
     resources :delivery_addresses, only:[:index,:edit,:create,:update,:destroy]
     resources :orders, only:[:new,:comfirm,:complete,:create,:index,:show]
-    resources :carts, only:[:index,:create,:update,:destroy,:all_destroy]
+    resources :carts, only:[:index,:create,:update,:destroy]
     resource :customers, only:[:show,:edit,:update,:comfirm,:withdraw]
     resources :products, only:[:index,:show]
   end

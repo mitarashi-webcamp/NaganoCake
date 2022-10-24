@@ -1,7 +1,6 @@
 <div class="container">
-  <div class="row">
-    <h1>商品新規登録</h1>
-  </div>
+  <h1>商品新規登録</h1>
+  <%= render "errors", product: @product %>
   <div class="row">
     <div class="col-sm-12 col-md-11 col-lg-8 px-5 px-sm-0 mx-auto">
       <%= render "form", product: @product %>

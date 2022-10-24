@@ -2,7 +2,11 @@ class Product < ApplicationRecord
   has_one_attached :image
   belongs_to :genre
   has_many :cart_products
+  validates :name, presence: true
+  validates :note, presence: true
   validates :price, presence: true
+  
+  
 
   def get_image
     unless image.attached?
