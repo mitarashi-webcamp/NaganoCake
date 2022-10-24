@@ -4,13 +4,20 @@
   <div class="col-md-3">
    </div>
    <div class="col-md-5 text-break">
-<% if @products.is_active == TRUE %>
-<%= form_with(model: @products,url: cart_products_path, method: :post,local: true)do |f| %>
-   <%= f.label :quantity, "個数選択" %>
-   <%= f.select :quantity, [1,2,3,4,5,6,7,8,9,10] %>
-   <%= f.hidden_field :product_id, :value => @products.id %>
+
+<%= image_tag @product.get_image, size: "300x200" %><br>
+<%= @product.name %>
+<%= @product.note %>
+￥<%= @product.price %>
+
+<% if @product.is_active == true %>
+<%= form_with(model: @cart_product,url: carts_path, method: :post,local: true)do |f| %>
+   <%= f.label :product_count, "個数選択" %>
+   <%= f.select :product_count, [1,2,3,4,5,6,7,8,9,10] %>
+   <%= f.hidden_field :product_id, :value => @product.id %>
     <%= f.submit "カートに入れる" %>
   <% end %>
 <% end %>
+
 </div>
 </div>
