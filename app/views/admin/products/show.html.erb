@@ -1,10 +1,8 @@
 <div class="container">
-  <div class="row">
-    <h1>商品詳細</h1>
-  </div>
+  <h1>商品詳細</h1>
   <div class="row">
     <div class="col-md-4">
-      <%= image_tag @product.image, size: "200x300" %>
+      <%= image_tag @product.get_image, size: "200x300" %>
     </div>
 
     <div class="col-md-8">
@@ -13,7 +11,7 @@
       <div>ジャンル <%= @product.genre.name %></div>
       <div>
         税込価格(税抜価格)
-        <%= @product.add_tax_price.to_s(:dalimited) %>
+        <%= @product.add_tax_price %>
         (
         <%= @product.price %>
         )円
@@ -21,12 +19,16 @@
       <div>
         販売ステータス
         <% if @product.is_active %>
-          <%= "販売中" %>
+          <div class="font-weight-bold text-success">
+            <%= "販売中" %>
+          </div>
         <% else %>
+          <div class="font-weight-bold text-danger">
           <%= "販売停止中" %>
+          </div>
         <% end %>
       </div>
-      <div><%= link_to "編集する", edit_admin_product_path, class: "btn btn-success" %></div>
+      <tr><%= link_to "編集する", edit_admin_product_path, class: "btn btn-success" %></tr>
     </div>
   </div>
 </div>
