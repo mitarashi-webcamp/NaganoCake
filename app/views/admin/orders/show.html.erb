@@ -12,7 +12,7 @@
       </tr>
       <tr>
         <td>注文日</td>
-        <td><%= @customer.created_at %></td> <%# 訂正予定　%>
+        <td><%= l @customer.created_at, format: :short %></td> <%# 訂正予定　%>
       </tr>
       <tr>
         <td>配送先</td>
@@ -27,7 +27,9 @@
       <tr>
         <td>注文ステータス</td>
         <td>
-
+         <%# form_with model: @order, url: admin_order_path do |f| %>
+         <%# f.select :status, [["waiting_for_payment", 0],["payment_confirmation", 1],["production", 2],["shipping_preparation",3],["shippe",4]] %>
+         <%# end %>
         </td>
         <td><%= link_to "更新", admin_order_path(@customer), class: "btn btn-success" %></td>
       </tr>
@@ -50,7 +52,9 @@
        <td></td>
        <td><%= order_product.count %></td>
        <td></td>
-       <td><%# order.product.select :count, [['製作不可',0], ['製作待ち',1], ['製作中',2], ['製作完了',4] %></td>
+       <td>
+
+       </td>
        <td><%= link_to "更新", admin_order_path(@customer), class: "btn btn-success" %></td>
        </tr>
        <% end %>
