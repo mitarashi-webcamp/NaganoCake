@@ -1,10 +1,11 @@
 <div class="container">
+  <h1>ジャンル一覧・追加</h1>
+  
+  <%= render "admin/products/errors", product: @genre %>
   <div class="row">
-    <h1>ジャンル一覧・追加</h1>
-  </div>
-
-  <div class="row">
-    <%= render "form", genre: @genre %>
+    <div>
+      <%= render "form", genre: @genre %>
+    </div>
     <table class='table table-hover table-inverse'>
       <thead>
         <tr>
