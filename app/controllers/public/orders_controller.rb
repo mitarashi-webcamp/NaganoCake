@@ -3,15 +3,73 @@ class Public::OrdersController < ApplicationController
     @order = Order.new
   end
 
+  def create
+    @carts = current_customer.carts.all
+    @order = current_customer.orders.new(order_params)
+    if @order.save
+      @carts.each do |cart|
+       order_product = OrderProduct.new
+       order_product.product_id = cart.product_id
+       order_product.order_id = @order.id
+       order_product.count = cart.product_count
+       order_product.price = cart.product.price
+       order_product.save
+      end
+    redirect_to orders_path
+    @carts.destroy_all
+    else
+    @order = Order.new(order_params)
+    render new
+    end
+ end
   def complete
   end
 
-  def comfirm
+  def confirm
+    @order = Order.new(order_params)
+
+    # @address = Address.find(params[:order][:address_id])
+    # @order.address = current_customer.customer_address
+    # @order.zip_code = @address.zip_code
+    # @order.address = @address.address
+    # @order.name = @address.first_name + current_customer.last_name
+    @carts = current_customer.carts.all
+
+    if params[:order][:address_number] == "1"
+      @order.address = current_customer.address
+      @order.zip_code = current_customer.zip_code
+      @order.name = current_customer.last_name
+    elsif params[:order][:address_number] == "2"
+    if DeliveryAddress.exists?(id: params[:order][:address_id])
+      @order.address = DeliveryAddress.find(params[:order][:address_id]).address
+      @order.zip_code = DeliveryAddress.find(params[:order][:address_id]).zip_code
+      @order.name = DeliveryAddress.find(params[:order][:address_id]).name
+    else
+    render :new
+    end
+    end
+
+    # @total = @carts.inject(0) { |sum, product| sum + product.sum_price }
+
   end
+
+
+
+
+
 
   def index
   end
 
   def show
+  end
+
+  private
+  def order_params
+    params.require(:order).permit(:total_payment, :zip_code, :address, :name)
+  end
+
+  def address_params
+    params.require(:order).permit(:name, :address)
   end
 end
