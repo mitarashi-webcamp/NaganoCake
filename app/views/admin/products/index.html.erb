@@ -1,15 +1,24 @@
 <div class="container">
+ <div class="row mt-5 mb-3">
+  <div class="col-3 offset-1 d-inline-flex">
+   <div class="bg-light px-3">
+    <h4 class="m-0">商品一覧</h4>
+   </div>
+  </div>
+  <div class="col-1 offset-6">
+   <%= link_to "＋", new_admin_product_path, class: "btn btn-primary rounded-circle" %>
+  </div>
+ </div>
+
  <div class="row">
-  <div class="col-sm-12 col-md-11 col-lg-8 px-5 px-sm-0 mx-auto">
+  <div class="col-10 offset-1">
    <br>
-   <h3>商品一覧</h3>
-    <%= link_to "商品を追加する＋", new_admin_product_path, class: "btn btn-primary" %>
-     <table class='table table-hover table-inverse'>
+     <table class='table table-borderless'>
       <thead>
-       <tr>
-        <th>商品id</th>
+       <tr class="table-secondary">
+        <th>商品ID</th>
         <th>商品名</th>
-        <th>税抜き価格</th>
+        <th>税抜価格</th>
         <th>ジャンル</th>
         <th>ステータス</th>
        </tr>
@@ -21,11 +30,19 @@
         <td><%= link_to product.name, admin_product_path(product) %></td>
         <td><%= product.price %></td>
         <td><%= product.genre.name %></td>
-        <td><%= product.is_active %></td>
+
+        <td>
+         <% if product.is_active %>
+          <p class="text-success font-weight-bold">販売中</p>
+         <% else %>
+          <p class="text-muted font-weight-bold">販売停止中</p>
+          <% end %>
+         </td>
        </tr>
        <% end %>
       </tbody>
      </table>
    </div>
+   <div class="col-2 offset-5"><%= paginate @products %></div>
   </div>
 </div>
