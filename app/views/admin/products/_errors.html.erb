@@ -1,8 +1,0 @@
-<% if product.errors.any? %>
-  <%= product.errors.count %>件のエラーが発生しました
-  <ul>
-    <% product.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
