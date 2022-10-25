@@ -27,8 +27,8 @@
 		<%= cart.product.name %>
     </td>
     <td><%= (cart.product.price * 1.1).floor %></td>
+    
     <td>
-
       <%= form_with model: cart, url: cart_path(cart), local: true, method: :patch do |f| %>
         <%= f.number_field :product_count, min: 1, max:10, id: "product_count"%>
         <%= f.submit "変更",class: "btn btn-success" %>
