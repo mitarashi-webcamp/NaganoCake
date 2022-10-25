@@ -9,15 +9,18 @@ class Public::CartsController < ApplicationController
     @carts.customer_id = current_customer.id
 
     if current_customer.carts.find_by(product_id: params[:cart][:product_id]).present?
-      current_customer.carts.find_by(product_id: params[:cart][:product_id])
-       @carts.product_count += params[:cart][:product_count].to_i
-       @carts.save!
+       @cart_product = current_customer.carts.find_by(product_id: params[:cart][:product_id])
+       product_count = params[:cart][:product_count].to_i + @cart_product.product_count
+       @cart_product.update_attribute(:product_count,product_count)
+       @carts.delete
+
        redirect_to carts_path
 
     elsif @carts.save!
-          redirect_to carts_path
+        redirect_to carts_path
 
-    else  render 'index'
+    else
+      render 'index'
     end
   end
 
