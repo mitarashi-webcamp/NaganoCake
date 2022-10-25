@@ -20,9 +20,9 @@ Rails.application.routes.draw do
     patch "customers/withdraw" => "customers#withdraw"
 
     resources :delivery_addresses, only:[:index,:edit,:create,:update,:destroy]
-    resources :orders, only:[:new,:comfirm,:complete,:create,:index,:show]
+    resources :orders, only:[:new,:confirm,:complete,:create,:index,:show]
     resources :carts, only:[:index,:create,:update,:destroy]
-    resource :customers, only:[:show,:edit,:update,:comfirm,:withdraw]
+    resource :customers, only:[:show,:edit,:update,:confirm,:withdraw]
     resources :products, only:[:index,:show]
   end
 
