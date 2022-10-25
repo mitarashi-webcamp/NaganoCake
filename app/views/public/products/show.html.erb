@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row m-5">
+    <div class="col-2">
+      <table class="table table-bordered">
+        <tr>
+          <td class="text-center">ジャンル検索</td>
+        </tr>
+        <tr>
+          <td>ジャンル</td>
+        </tr>
+        <tr>
+          <td>ジャンル</td>
+        </tr>
+        <tr>
+          <td>ジャンル</td>
+        </tr>
+        <tr>
+          <td>ジャンル</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="col-4 text-center">
+     <h3 class="d-inline-flex px-0"><%= image_tag @product.get_image, size: "300x250" %></h3>
+    </div>
+
+    <div class="col-6">
+       <table class="table table-borderless d-inline-flex mx-3 p-0">
+         <tr>
+           <td><h3><%= @product.name %></h3></td>
+         </tr>
+         <tr>
+           <td><h5><%= @product.note %></h5></td>
+         </tr>
+         <tr>
+           <td class="d-inline-flex"><h4>¥<%= @product.price %></h4>(税込)</td>
+         </tr>
+         <tr>
+          <td>
+           <% if @product.is_active == true %>
+            <%= form_with(model: @cart_product,url: carts_path, method: :post,local: true, class: "d-inline-flex")do |f| %>
+             <%= f.select :product_count, [1,2,3,4,5,6,7,8,9,10], include_blank: "個数選択" %>
+             <%= f.hidden_field :product_id, :value => @product.id %>
+             <%= f.submit "カートに入れる", class: "btn btn-success mx-4" %>
+            <% end %>
+           <% end %>
+          </td>
+         </tr>
+       </table>
+    </div>
+  </div>
+</div>

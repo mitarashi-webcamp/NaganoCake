@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row m-5">
+    <div class="col-2">
+      <table class="table table-bordered">
+        <tr>
+          <td class="text-center">ジャンル検索</td>
+        </tr>
+        <tr>
+          <td>ジャンル</td>
+        </tr>
+        <tr>
+          <td>ジャンル</td>
+        </tr>
+        <tr>
+          <td>ジャンル</td>
+        </tr>
+        <tr>
+          <td>ジャンル</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="col-10">
+      <h3 class="px-0">商品一覧(全<%= @products_count.count %>件)</h3>
+      <% @products.each do |product| %>
+        <table class="col-2 table table-borderless d-inline-flex m-4 p-0">
+          <tr>
+            <td><%= image_tag product.get_image, size: "200x150" %></td>
+          </tr>
+          <tr>
+            <td><%= link_to product.name, product_path(product.id) %></td>
+          </tr>
+          <tr>
+            <td>¥<%= product.price %></td>
+          </tr>
+        </table>
+      <% end %>
+      <div class="col-2 offset-5"><%= paginate @products %></div>
+    </div>
+  </div>
+</div>

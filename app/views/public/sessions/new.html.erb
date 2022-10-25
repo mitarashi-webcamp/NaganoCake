@@ -1,0 +1,57 @@
+<%= flash[notice] %>
+
+<div class="container">
+  <div class="row my-5">
+    <div class="col-2 offset-1 d-inline-flex">
+      <div class="bg-light px-3">
+        <h4 class="m-0">ログイン</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="row my-5">
+    <iv class="col-5 offset-1 d-inline-flex">
+      <div class="bg-light mx-4 px-3">
+        <h5 class="m-0">会員の方はこちらからログイン</h5>
+      </div>
+    </iv>
+  </div>
+
+  <div class="row">
+    <%= form_with model: @customer, url: new_customer_session_path, class: "col-6" do |f| %>
+     <div class="col-12 offset-4">
+       <table class="table table-borderless">
+         <tr>
+           <td>メールアドレス</td>
+           <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-100" %></td>
+         </tr>
+         <tr>
+           <td>パスワード</td>
+           <td><%= f.password_field :password, autocomplete: "current-password", class: "w-100" %></td>
+         </tr>
+         <tr>
+           <td></td>
+           <td><%= f.submit "ログイン", class: "btn btn-primary w-50" %></td>
+         </tr>
+       </table>
+     </div>
+    <% end %>
+  </div>
+  <div class="row my-5">
+    <iv class="col-5 offset-1 d-inline-flex">
+      <div class="bg-light mx-4 px-3">
+        <h5 class="m-0">会員登録がお済みでない方</h5>
+      </div>
+    </iv>
+  </div>
+
+  <div class="row">
+    <%= form_with model: @customer, url: new_customer_session_path, class: "col-6" do |f| %>
+      <div class="col-12 offset-6">
+        <%= link_to "こちら", new_customer_registration_path %>
+        から新規登録を行ってください。
+      </div>
+    <% end %>
+  </div>
+
+</div>
