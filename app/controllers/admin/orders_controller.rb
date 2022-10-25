@@ -4,8 +4,14 @@ class Admin::OrdersController < ApplicationController
     @customer = Customer.find(params[:id])
     @orders = Order.all
     @order_products = OrderProduct.all
-    #@products = Product.all
+    #@order = Order.find(params[:id])
 
+  end
 
+  def update
+    @order = Order.find(params[:id])
+    if @order.update(order_params)
+       redirect_to request.referer
+    end
   end
 end
