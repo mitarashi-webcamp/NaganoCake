@@ -15,13 +15,14 @@ class Public::OrdersController < ApplicationController
        order_product.price = cart.product.price
        order_product.save
       end
-    redirect_to orders_path
     @carts.destroy_all
+    redirect_to orders_complete_path
     else
     @order = Order.new(order_params)
     render new
     end
- end
+  end
+
   def complete
   end
 
