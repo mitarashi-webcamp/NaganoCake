@@ -4,6 +4,9 @@ class Admin::OrdersController < ApplicationController
     @customer = Customer.find(params[:id])
     @orders = Order.all
     @order_products = OrderProduct.all
+    @order = Order.new
+    @order_product = OrderProduct.find(params[:id])
+    #@delivery_address = DeliveryAddress.find(params[:id])
     #@order = Order.find(params[:id])
 
   end
