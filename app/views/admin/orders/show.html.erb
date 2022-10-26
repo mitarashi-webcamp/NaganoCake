@@ -8,7 +8,7 @@
     <tbody>
       <tr>
         <td>購入者</td>
-        <td><%= @customer.last_name %><%= @customer.first_name %></td>
+        <td><%= link_to @order.name, admin_customer_path(@customer) %></td>
       </tr>
       <tr>
         <td>注文日</td>
@@ -16,8 +16,8 @@
       </tr>
       <tr>
         <td>配送先</td>
-        <td><%= "@delivery_address.zip_code" %> <%# "delivery_address.address" %><br>
-            <%# "delivery_address.name" %>
+        <td>〒<%= @order.zip_code %> <%= @order.address %><br>
+            <%= @order.name %>
         </td>
       </tr>
       <tr>
@@ -27,12 +27,11 @@
       <tr>
         <td>注文ステータス</td>
         <td>
-         <%# form_with model: @, url: admin_order_path(@order), method: :patch do |f| %>
-         <%# f.select :status, Order.statuses_i18n.invert, {prompt: false}, class:"form-control form-control-sm col-6"  %>
+         <%= form_with model: @order, url: admin_order_path(@order), method: :patch do |f| %>
+         <%= f.select :status, @status_key %><%= f.submit "更新", class: "btn btn-success" %>
+         <% end %>
         </td>
-        <td> <%# f.submit "更新", class: "btn btn-success" %></td>
       </tr>
-      <%# end %>
     </tbody>
    </table>
    <table class='table table-hover table-inverse'>
@@ -54,13 +53,13 @@
        <td><% subtotal = ((order_product.product.price*order_product.count)*1.1).to_i %>
        <%= subtotal %>
        </td>
-       <% end %>
        <td>
-          <%#form_with %>
+          <%= form_with model: @order_product, url: admin_order_product_path(@order_product), method: :patch do |f| %>
+            <%= f.select :making_status, @making_status_key %><%= f.submit "更新", class: "btn btn-success" %>
+          <% end %>
        </td>
-       <td><%# f.submit "更新", class: "btn btn-success" %></td>
-       <%# end %>
        </tr>
+       <% end %>
      </tbody>
    </table>
    </div>
@@ -83,15 +82,15 @@
       <tr>
         <td>送料</td>
         <td>
-        <% @order.postage = 800 %>
-         <%= @order.postage %>
+        <% @order_new.postage = 800 %>
+         <%= @order_new.postage %>
         </td>
       </tr>
       <tr>
         <td>請求金額合計</td>
         <td>
-            <% @order.billing_amount = @order.postage + total.to_i %>
-            <%= @order.billing_amount %>
+            <% @order_new.billing_amount = @order.postage + total.to_i %>
+            <%= @order_new.billing_amount %>
         </td>
       </tr>
     </tbody>
