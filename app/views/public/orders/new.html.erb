@@ -15,6 +15,7 @@
 				<div>
 					<%= f.radio_button :total_payment, Order.total_payments.key(0) %>
 					<%= f.label :total_payment, Order.total_payments_i18n[:credit_card] %>
+					
 				</div>
 				<div>
 					<%= f.radio_button :total_payment, Order.total_payments.key(1) %>

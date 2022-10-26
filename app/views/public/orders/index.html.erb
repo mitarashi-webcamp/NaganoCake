@@ -20,12 +20,14 @@
         </tr>
         <% @orders.each do |order| %>
           <tr>
+
             <td class="align-middle py-0" style="width: 130px"><%= order.created_at.strftime('%Y/%m/%d') %></td>
             <td class="align-middle py-0">
               <div>〒<%= order.zip_code %></div>
               <div><%= order.address %></div>
               <div><%= order.name %></div>
             </td>
+
             <td class="align-middle py-0" style="width: 150px">
               <% order.order_products.each do |order_product| %>
                 <div><%= order_product.product.name %></div>
