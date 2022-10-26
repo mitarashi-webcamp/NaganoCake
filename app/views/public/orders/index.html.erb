@@ -20,21 +20,27 @@
         </tr>
         <% @orders.each do |order| %>
           <tr>
-            <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
-            <td>
+
+            <td class="align-middle py-0" style="width: 130px"><%= order.created_at.strftime('%Y/%m/%d') %></td>
+            <td class="align-middle py-0">
               <div>〒<%= order.zip_code %></div>
               <div><%= order.address %></div>
               <div><%= order.name %></div>
             </td>
-            <td>
-              <% order_products = @order_products.where(order_id: order.id) %>
-              <% order_products.each do |order_product| %>
-                <div><%= order_product %></div>
+
+            <td class="align-middle py-0" style="width: 150px">
+              <% order.order_products.each do |order_product| %>
+                <div><%= order_product.product.name %></div>
               <% end %>
+          <!--<%# order_products = @order_products.where(order_id: order.id) %> ここから
+              <%# order_products.each do |order_product| %>
+                <%# product = @products.where(id: order_product.product_id) %>
+                <div><%#= product[0].name %></div>
+              <%# end %>　　　　　　　　　　　　　　　　　　　　　　　　　　　　ここまでの記述でもOK-->
             </td>
-            <td><%= order.billing_amount %>円</td>
-            <td><%= Order.status_i18n[Order.status.key(order.status)] %></td>
-            <td><%= link_to "表示する", order_path(order), class: "btn btn-primary" %></td>
+            <td class="align-middle py-0" style="width: 100px"><%= order.billing_amount %>円</td>
+            <td class="align-middle py-0" style="width: 150px"><%= Order.statuses_i18n[order.status] %></td>
+            <td class="align-middle text-center py-0" style="width: 150px"><%= link_to "表示する", order_path(order), class: "btn btn-primary" %></td>
           </tr>
         <% end %>
       </table>
