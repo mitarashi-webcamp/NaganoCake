@@ -8,13 +8,5 @@ class Order < ApplicationRecord
   def address_display
     '〒' + zip_code + ' ' + address + ' ' + name
   end
-
-  # def taxin_price
-  #   price*1.1
-  # end
-
-  # def subtotal
-  #   taxin_price * count
-  # end
-
+  
 end
