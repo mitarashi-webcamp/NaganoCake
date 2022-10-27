@@ -8,30 +8,29 @@
     <tbody>
       <tr>
         <td>購入者</td>
-        <td><%= @customer.last_name %><%= @customer.first_name %></td>
+        <td><%= link_to @order.name, admin_customer_path(@order.customer) %></td>
       </tr>
       <tr>
         <td>注文日</td>
-        <td><%= l @customer.created_at, format: :short %></td> <%# 訂正予定　%>
+        <td><%= l @order_product.created_at, format: :short %></td>
       </tr>
       <tr>
         <td>配送先</td>
-        <td><%= "delivery_address.zip_code" %> <%= "delivery_address.address" %><br><%# 会員とアソシエーション？ %>
-            <%= "delivery_address.name" %>
+        <td>〒<%= @order.zip_code %> <%= @order.address %><br>
+            <%= @order.name %>
         </td>
       </tr>
       <tr>
         <td>支払方法</td>
-        <td><%= "order.total_payment" %></td>
+        <td><%= Order.total_payments_i18n[@order.total_payment] %></td>
       </tr>
       <tr>
         <td>注文ステータス</td>
         <td>
-         <%# form_with model: @order, url: admin_order_path do |f| %>
-         <%# f.select :status, [["waiting_for_payment", 0],["payment_confirmation", 1],["production", 2],["shipping_preparation",3],["shippe",4]] %>
-         <%# end %>
+         <%= form_with model: @order, url: admin_order_path(@order), method: :patch do |f| %>
+         <%= f.select :status, @status_key %>　　<%= f.submit "更新", class: "btn btn-success" %>
+         <% end %>
         </td>
-        <td><%= link_to "更新", admin_order_path(@customer), class: "btn btn-success" %></td>
       </tr>
     </tbody>
    </table>
@@ -48,14 +47,17 @@
      <tbody>
        <% @order_products.each do |order_product| %>
        <tr>
-       <td><%= order_product.name %></td>
-       <td></td>
+       <td><%= order_product.product.name %></td>
+       <td><%= (order_product.product.price * 1.1).floor %></td>
        <td><%= order_product.count %></td>
-       <td></td>
-       <td>
-
+       <td><% subtotal = ((order_product.product.price*order_product.count)*1.1).to_i %>
+       <%= subtotal %>
        </td>
-       <td><%= link_to "更新", admin_order_path(@customer), class: "btn btn-success" %></td>
+       <td>
+          <%= form_with model: order_product, url: admin_order_product_path(order_product), method: :patch do |f| %>
+            <%= f.select :making_status, @making_status_key %>　　<%= f.submit "更新", class: "btn btn-success" %>
+          <% end %>
+       </td>
        </tr>
        <% end %>
      </tbody>
@@ -66,19 +68,30 @@
 <div class="col-lg-4 mt-5">
   <table class="table table-borderless">
     <tbody>
+         <% total = 0 %>
       <tr>
-        <%# @orders.each do |order| %>
         <td>商品合計</td>
-        <td></td>
+        <td>
+          <% @order_products.each do |order_product| %>
+           <% subtotal = ((order_product.product.price*order_product.count)*1.1).to_i %>
+            <% total += subtotal %>
+            <% end %>
+            <%= total %>
+        </td>
       </tr>
       <tr>
         <td>送料</td>
-        <td><%# order.postage %></td>
+        <td>
+        <% @order_new.postage = 800 %>
+         <%= @order_new.postage %>
+        </td>
       </tr>
       <tr>
         <td>請求金額合計</td>
-        <td></td>
-        <%# end %>
+        <td>
+            <% @order_new.billing_amount = @order.postage + total.to_i %>
+            <%= @order_new.billing_amount %>
+        </td>
       </tr>
     </tbody>
   </table>

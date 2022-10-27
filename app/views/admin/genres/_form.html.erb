@@ -1,4 +1,19 @@
 <div class="row">
+<% if genre.id.present? %>
+  <%= form_with model: genre, url: admin_genre_path, class: "d-inline-flex align-items-center",method: :patch do |f| %>
+    <div class="form-group my-0 mx-4">
+      ジャンル名
+    </div>
+    <div class="form-group my-0 mx-4">
+      <%= f.text_field :name %>
+    </div>
+    <div class="form-group my-0 mx-4">
+      <%= f.submit "変更を保存", class: "btn btn-success" %>
+    </div>
+  <% end %>
+
+<% else %>
+
   <%= form_with model: genre, url: "/admin/genres", class: "d-inline-flex align-items-center",method: :post do |f| %>
     <div class="form-group my-0 mx-4">
       ジャンル名
@@ -7,11 +22,9 @@
       <%= f.text_field :name %>
     </div>
     <div class="form-group my-0 mx-4">
-      <% if genre.id.present? %>
-        <%= f.submit "変更を保存", class: "btn btn-success" %>
-      <% else %>
-        <%= f.submit "新規登録", class: "btn btn-success" %>
-      <% end %>
+      <%= f.submit "新規登録", class: "btn btn-success" %>
     </div>
   <% end %>
+
+<% end %>
 </div>
