@@ -15,7 +15,7 @@ class Public::OrdersController < ApplicationController
     @order = current_customer.orders.new(order_params)
     if @order.save
       @carts.each do |cart|
-       order_product = OrderProduct.new
+      order_product = OrderProduct.new
        order_product.product_id = cart.product_id
        order_product.order_id = @order.id
        order_product.count = cart.product_count
