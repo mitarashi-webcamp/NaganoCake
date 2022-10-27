@@ -7,8 +7,7 @@ class Public::OrdersController < ApplicationController
      @order = Order.new(order_params)
     if @order.save
       redirect_to orders_confirm_path(@order.id)
-    else
-      render :new
+
     end
 
 
@@ -23,10 +22,10 @@ class Public::OrdersController < ApplicationController
        order_product.price = cart.product.price
        order_product.save
       end
-    @carts.destroy_all
-    redirect_to orders_complete_path
+      @carts.destroy_all
+      redirect_to orders_complete_path
     else
-    @order = Order.new(order_params)
+      @order = Order.new(order_params)
     render new
     end
   end
@@ -51,7 +50,7 @@ class Public::OrdersController < ApplicationController
     else
     render :new
     end
-    
+
     end
 
     # @total = @carts.inject(0) { |sum, product| sum + product.sum_price }
