@@ -1,7 +1,7 @@
 class Admin::OrdersController < ApplicationController
 before_action :authenticate_admin!
   def show
-    @customer = Customer.find(params[:id])
+    #@customer = Customer.find(params[:id])
     @order = Order.find(params[:id])
     @orders = Order.all
     @order_products = OrderProduct.where(order_id: @order.id)
