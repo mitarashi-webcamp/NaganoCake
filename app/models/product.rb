@@ -5,8 +5,9 @@ class Product < ApplicationRecord
   validates :name, presence: true
   validates :note, presence: true
   validates :price, presence: true
-  
-  
+
+
+
 
   def get_image
     unless image.attached?

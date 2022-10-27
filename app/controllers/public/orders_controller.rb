@@ -4,6 +4,13 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
+    @order = Order.new(order_params)
+    if @order.save
+      redirect_to orders_confirm_path(@order.id)
+    else
+      render :new
+    end
+
     @carts = current_customer.carts.all
     @order = current_customer.orders.new(order_params)
     if @order.save
@@ -28,18 +35,13 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
-
-    # @address = Address.find(params[:order][:address_id])
-    # @order.address = current_customer.customer_address
-    # @order.zip_code = @address.zip_code
-    # @order.address = @address.address
-    # @order.name = @address.first_name + current_customer.last_name
     @carts = current_customer.carts.all
 
     if params[:order][:address_number] == "1"
       @order.address = current_customer.address
       @order.zip_code = current_customer.zip_code
       @order.name = current_customer.last_name
+      @order.name = current_customer.first_name
     elsif params[:order][:address_number] == "2"
     if DeliveryAddress.exists?(id: params[:order][:address_id])
       @order.address = DeliveryAddress.find(params[:order][:address_id]).address
@@ -48,6 +50,7 @@ class Public::OrdersController < ApplicationController
     else
     render :new
     end
+
     end
 
     # @total = @carts.inject(0) { |sum, product| sum + product.sum_price }

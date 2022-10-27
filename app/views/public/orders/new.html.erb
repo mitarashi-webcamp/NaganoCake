@@ -1,5 +1,15 @@
 <div class="container">
 
+<% if @order.errors.any? %>
+  <%= @order.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @order.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
   <div class="row my-5">
     <div class="col-3 offset-1 d-inline-flex">
       <div class="bg-light px-3">
@@ -15,7 +25,7 @@
 				<div>
 					<%= f.radio_button :total_payment, Order.total_payments.key(0) %>
 					<%= f.label :total_payment, Order.total_payments_i18n[:credit_card] %>
-					
+
 				</div>
 				<div>
 					<%= f.radio_button :total_payment, Order.total_payments.key(1) %>
@@ -26,7 +36,7 @@
 			<div class="col-12 mx-5">
 				<div class="mt-2">
 					<div>
-						<%= f.radio_button :address_number, "1" %>
+						<%= f.radio_button :address_number, "1", checked: true %>
 						<%= f.label :address_id, "ご自身の住所", class: "my-0" %>
 					</div>
 					<div class="mx-4 mt-2">〒<%= current_customer.zip_code %> <%= current_customer.address %></div>
