@@ -16,11 +16,11 @@ class Public::CartsController < ApplicationController
 
        redirect_to carts_path
 
-    elsif @carts.save!
+    elsif @carts.save
         redirect_to carts_path
 
     else
-      render 'index'
+      render 'public/products/show'
     end
   end
 
