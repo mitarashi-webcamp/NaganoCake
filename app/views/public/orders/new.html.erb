@@ -1,14 +1,5 @@
 <div class="container">
 
-<% if @order.errors.any? %>
-  <%= @order.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @order.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
-
 
   <div class="row my-5">
     <div class="col-3 offset-1 d-inline-flex">
