@@ -9,7 +9,9 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:last_name, :first_name, :last_name_kana, :first_name_kana, :zip_code, :address, :phone_number])
   end
 
-
+  def after_sign_in_path_for(resource)
+    customers_path
+  end
   #def authenticate_customer
   #   if current_customer.id == nil
   #     redirect_to(new_customer_session_path)

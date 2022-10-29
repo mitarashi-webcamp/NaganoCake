@@ -4,21 +4,28 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
+     @order = Order.new(order_params)
+    if @order.save
+      redirect_to orders_confirm_path(@order.id)
+
+    end
+
+
     @carts = current_customer.carts.all
     @order = current_customer.orders.new(order_params)
     if @order.save
       @carts.each do |cart|
-       order_product = OrderProduct.new
+      order_product = OrderProduct.new
        order_product.product_id = cart.product_id
        order_product.order_id = @order.id
        order_product.count = cart.product_count
        order_product.price = cart.product.price
        order_product.save
       end
-    @carts.destroy_all
-    redirect_to orders_complete_path
+      @carts.destroy_all
+      redirect_to orders_complete_path
     else
-    @order = Order.new(order_params)
+      @order = Order.new(order_params)
     render new
     end
   end
@@ -36,12 +43,13 @@ class Public::OrdersController < ApplicationController
       @order.name = current_customer.last_name
       @order.name = current_customer.first_name
     elsif params[:order][:address_number] == "2"
-      DeliveryAddress.exists?(id: params[:order][:address_id])
+    if  DeliveryAddress.exists?(id: params[:order][:address_id])
       @order.address = DeliveryAddress.find(params[:order][:address_id]).address
       @order.zip_code = DeliveryAddress.find(params[:order][:address_id]).zip_code
       @order.name = DeliveryAddress.find(params[:order][:address_id]).name
     else
     render :new
+    end
 
     end
 
